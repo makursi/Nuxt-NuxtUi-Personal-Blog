@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const layout = 'auth'
 
-const loginAccount = ref({
+const loginInput = ref({
    email:'',
    password:''
 })
@@ -13,10 +13,10 @@ const loginAccount = ref({
     <NuxtLayout :name="layout">
 <UContainer>
         <UFormField label="Email">
-          <UInput placeholder="Enter your email" v-model="loginAccount.email"/>
+          <UInput placeholder="Enter your email" v-model="loginInput.email"/>
         </UFormField>
         <UFormField label="Password">
-          <UInput placeholder="Enter your Password" v-model="loginAccount.password"/>
+          <UInput placeholder="Enter your Password" v-model="loginInput.password"/>
         </UFormField>
         <UButton label="Submit" class="m-2">sign in</UButton>
 
