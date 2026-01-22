@@ -27,8 +27,6 @@ const loginUser = async () => {
        user:res?.user
     }))
     myToast.success(' successfully!', 'Login account successfully~')
-    window.location.href = `./admin/dashboard`
-
   } catch (error) {
     loading.value = false
     const errmsg = error.message
@@ -53,6 +51,10 @@ const loginUser = async () => {
           <UButton label="sign up">
             <NuxtLink to="/auth/register">sign up a account</NuxtLink>
           </UButton>
+
+          <div>
+             <NuxtLink to="/admin/dashboard">go to dashboard</NuxtLink>
+          </div>
         </div>
       </UContainer>
     </NuxtLayout>
