@@ -2,7 +2,13 @@
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: false },
-  modules: ['@nuxt/content', '@nuxt/ui', '@pinia/nuxt', '@nuxt/icon'],
+  modules: [
+    '@nuxt/content',
+    '@nuxt/ui',
+    '@pinia/nuxt',
+    '@nuxt/icon',
+    'nuxt-tiptap-editor'
+  ],
   ui:{
     theme:{
        colors:['primary','error']
@@ -14,6 +20,8 @@ export default defineNuxtConfig({
       BASE_URL: process.env.BASE_URL,
       API_BASE_URL: process.env.API_BASE_URL,
     }
-
+  },
+  tiptap:{
+     prefix:'Tiptap'
   }
 })

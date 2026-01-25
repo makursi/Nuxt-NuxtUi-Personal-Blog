@@ -83,7 +83,7 @@ onMounted(async ()=>{
         <slot></slot>
       </div>
 
-      <UButton :label="logout" @click='logoutUser' :loading="loading"> {{ loading ? 'processing~~' : 'logout' }}
+      <UButton :label="logout" @click='logoutUser' :loading="loading" class="py-2 m-2"> {{ loading ? 'processing~~' : 'logout' }}
       </UButton>
     </div>
   </UContainer>
