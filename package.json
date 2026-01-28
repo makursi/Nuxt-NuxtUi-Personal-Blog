@@ -14,9 +14,13 @@
     "@nuxt/icon": "^2.2.1",
     "@nuxt/ui": "^4.3.0",
     "@pinia/nuxt": "^0.11.3",
+    "@tiptap/html": "^3.17.1",
+    "@tiptap/starter-kit": "^3.17.1",
+    "@tiptap/vue-3": "^3.17.1",
     "better-sqlite3": "^12.6.2",
     "nuxt": "^4.2.2",
     "pinia": "^3.0.4",
+    "slugify": "^1.6.6",
     "typescript": "^5.9.3",
     "vue": "^3.5.26",
     "vue-router": "^4.6.4"

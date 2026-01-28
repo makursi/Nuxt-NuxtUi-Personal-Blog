@@ -1,0 +1,45 @@
+/* 全局编辑器样式 */
+.tiptap-editor {
+  background: #1a1a1a;
+  border: 1px solid #333;
+  border-radius: 8px;
+  min-height: 200px;
+  padding: 16px;
+  margin-top: 12px;
+  color: #e0e0e0;
+  font-family: 'Inter', sans-serif;
+  line-height: 1.6;
+}
+
+.tiptap-editor p {
+  margin: 0.75em 0;
+}
+
+.tiptap-editor h1 {
+  font-size: 24px;
+  color: #ffffff;
+  margin: 1.2em 0 0.5em;
+}
+
+.tiptap-editor h2 {
+  font-size: 20px;
+  color: #b3d9ff;
+  margin: 1em 0 0.5em;
+}
+
+.tiptap-editor ul,
+.tiptap-editor ol {
+  padding-left: 1.5em;
+  margin: 1em 0;
+}
+
+.tiptap-editor a {
+  color: #00b894;
+  text-decoration: underline;
+}
+
+/* 聚焦时高亮边框 */
+.tiptap-editor .ProseMirror-focused {
+  border-color: #00b894;
+  box-shadow: 0 0 0 2px rgba(0, 184, 148, 0.2);
+}

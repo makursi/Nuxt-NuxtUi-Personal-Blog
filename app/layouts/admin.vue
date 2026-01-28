@@ -26,7 +26,6 @@ async function checkIfUserIsLoggedIn() {
     loading.value = false;
     if (error?.response?.status === 401) {
       showError(error.response?._data?.message);
-      localStorage.clear()
       await navigateTo('/auth/login');
     }
   }

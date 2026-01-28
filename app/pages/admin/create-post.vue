@@ -1,14 +1,21 @@
 <script setup lang="ts">
-
+import slugify from 'slugify'
 import useMyToast from '~/composable/useMyToast';
 import MyEditor from '~/components/post/MyEditor.vue';
 const myToast = useMyToast()
-const props = defineProps(['postContent']);
+
 const postInput = ref({
    title:'',
-   post_content:props.postContent,
-   id:null
+   post_content:'',
+   slug:''
 }) 
+
+watch(()=>postInput.value.title, (newTitle) => {
+  if (newTitle && !postInput.value.slug) {
+    postInput.value.slug = slugify(newTitle, { lower: true, strict: true })
+  }
+})
+
 
 const layout = 'admin'
 const config = useRuntimeConfig()
@@ -29,7 +36,7 @@ const userData = JSON.parse(localStorage.getItem("userdata") || '{}')
       body: postInput.value
     });
 
-    console.log(res);
+    console.log(postInput.value);
 
     myToast.success('Post created successfully!');
     await navigateTo('/admin/dashboard');
@@ -50,17 +57,22 @@ const userData = JSON.parse(localStorage.getItem("userdata") || '{}')
    <UContainer>
     <div>
         <UMain>
-<div class="p-2 m-2">
-            <UFormField>
-              <UInput placeholder="create your post title" v-model="postInput.title" />
-            </UFormField>
+        <div class="flex flex-col p-2 m-2 items-left justify-between">
+          <div class="flex flex-col p-2 m-2">
+             <UFormField>
+                <UInput placeholder="create your post title" v-model="postInput.title" />
+              </UFormField>
+                <ClientOnly class="mt-2">
+                  <MyEditor v-model="postInput.post_content" class="editor-wrapper" />
+                </ClientOnly>
+              <div class="m-2">
+                <UButton @click="createPost">Publish post</UButton>
+              </div>
           </div>
-          <ClientOnly>
-            <MyEditor />
-          </ClientOnly>
-          <div class="m-2">
-           <UButton @click="createPost">publish post</UButton>
-          </div>
+
+
+
+        </div>
         </UMain>
       </div>
    </UContainer>
@@ -69,5 +81,9 @@ const userData = JSON.parse(localStorage.getItem("userdata") || '{}')
 </template>
 
 <style lang="scss" scoped>
-
+.editor-wrapper {
+  width: 100%;
+  height: 100%;
+  margin-bottom: 16px;
+}
 </style>
