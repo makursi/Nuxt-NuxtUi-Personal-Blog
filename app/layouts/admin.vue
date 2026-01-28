@@ -1,11 +1,16 @@
 <script setup lang="ts">
+import type { NavigationMenuItem } from '@nuxt/ui'
 import getUserData from '~/plugins/getUseData';
 import useMyToast from '~/composable/useMyToast';
 const myToast = useMyToast()
 const userData = getUserData()
 const loading = ref(false)
 const config = useRuntimeConfig()
-
+const items = computed<NavigationMenuItem[]>(()=>[
+  { label: 'Dashboard', to: '/admin/dashboard' },
+  { label: 'Posts', to: '/admin/list-of-post' },
+  { label: 'Create Post', to: '/admin/create-post' }
+])
 
 async function checkIfUserIsLoggedIn() {
   try {
@@ -62,34 +67,28 @@ onMounted(async ()=>{
 </script>
 
 <template>
+  <div class="min-h-screen bg-gray-900 text-white">
+  <UHeader>
+    <template #left>
+       <UNavigationMenu :items="items" />
+    </template>
 
-  <UContainer>
+    <template #right>
+       <div class="m-2 p-2 flex items-center justify-evenly">
+          <h3 class="text-lg font-bold m-2">Welcome, {{ userData?.user?.name }}</h3>
+          <h1 class="text-base text-pink-700">{{ userData?.user?.email }}</h1>
+          <UButton :label="logout" @click='logoutUser' :loading="loading" class="py-2 m-2"> {{ loading ? 'processing~~'
+            :'logout' }}
+          </UButton>
+        </div>
+
+    </template>
+  </UHeader>
     <div>
-      <ul>
-        <li>
-          <NuxtLink to="/admin/dashboard">DashBoard</NuxtLink>
-        </li>
-        <li>
-          <NuxtLink to="/admin/list-of-post">Posts</NuxtLink>
-        </li>
-        <li>
-          <NuxtLink to="/auth/login">Login</NuxtLink>
-        </li>
-        <li>
-          <NuxtLink to="/admin/create-post">create post</NuxtLink>
-        </li>
-      </ul>
-     <div>
         <slot></slot>
       </div>
 
-      <UButton :label="logout" @click='logoutUser' :loading="loading" class="py-2 m-2"> {{ loading ? 'processing~~' : 'logout' }}
-      </UButton>
-    </div>
-  </UContainer>
-
-
-
+  </div>
 </template>
 
 <style lang="scss" scoped>

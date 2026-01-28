@@ -27,6 +27,8 @@ const loginUser = async () => {
        user:res?.user
     }))
     myToast.success(' successfully!', 'Login account successfully~')
+
+    navigateTo('/admin/dashboard');
   } catch (error) {
     loading.value = false
     const errmsg = error.message

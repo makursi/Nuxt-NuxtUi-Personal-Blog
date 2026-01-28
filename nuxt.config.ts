@@ -7,7 +7,6 @@ export default defineNuxtConfig({
     '@nuxt/ui',
     '@pinia/nuxt',
     '@nuxt/icon',
-    'nuxt-tiptap-editor'
   ],
   ui:{
     theme:{
