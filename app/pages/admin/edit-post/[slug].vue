@@ -8,7 +8,9 @@ definePageMeta({
 });
 
 const route = useRoute();
-const postId = parseInt(Array.isArray(route.params.id) ? route.params.id[0] : route.params.id);
+const postSlug = Array.isArray(route.params.slug)
+  ? route.params.id[0]
+  : route.params.id;
 const postStore = usePostStore();
 const myToast = useMyToast();
 
@@ -52,7 +54,7 @@ const removeTag = (tagToRemove: string) => {
 // 页面加载时获取文章数据
 onMounted(async () => {
   try {
-    await postStore.fetchPostById(postId);
+    await postStore.fetchPostById(postSlug);
   } catch (error) {
     console.error('获取文章失败:', error);
     myToast.error('获取文章失败');

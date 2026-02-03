@@ -106,12 +106,12 @@ export const usePostStore = defineStore('post-store', () => {
   };
 
   // 获取单个文章
-  const fetchPostById = async (id: number) => {
+  const fetchPostById = async (slug:string) => {
     try {
       loading.value.fetch = true;
       error.value = null;
 
-      const res: any = await $fetch(`${config.public?.API_BASE_URL}/posts/${id}`, {
+      const res: any = await $fetch(`${config.public?.API_BASE_URL}/posts/:${slug}`, {
         method: "GET"
       });
 

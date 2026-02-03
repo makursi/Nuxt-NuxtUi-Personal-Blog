@@ -78,8 +78,8 @@ const deletePost = async (postId: number) => {
 };
 
 // 编辑文章
-const editPost = (postId:number) => {
-  navigateTo(`/admin/edit-post/${postId}`);
+const editPost = (postSlug:string) => {
+  navigateTo(`/admin/edit-post/${postSlug}`);
 };
 
 // 计算当前页的文章
@@ -151,7 +151,7 @@ onMounted(() => {
               </div>
               <div class="flex space-x-2">
                 <UButton 
-                  @click="editPost(post._id)" 
+                  @click="editPost(post.slug)" 
                   color="blue" 
                   variant="outline" 
                   size="sm"
