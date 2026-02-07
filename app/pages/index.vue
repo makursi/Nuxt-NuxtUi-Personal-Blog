@@ -1,28 +1,16 @@
 <script setup lang="ts">
 import getUserData from '~/plugins/getUseData';
-const layout = 'default'
-// 博客文章数据
-const blogPosts = [
-  {
-    id: 1,
-    icon: 'i-heroicons-light-bulb',
-    title: '创意灵感',
-    description: '探索激发创造力的方法和技巧，让你的思维更加活跃。'
-  },
-  {
-    id: 2,
-    icon: 'i-heroicons-code-bracket',
-    title: '编程之旅',
-    description: '分享编程学习的心路历程，以及实用的编码技巧。'
-  },
-  {
-    id: 3,
-    icon: 'i-heroicons-book-open',
-    title: '知识积累',
-    description: '记录日常学习心得，持续自我提升的重要性。'
-  }
-]
+import { usePostStore } from '#imports';
+const { posts } = usePostStore();
+const blogPosts = ref<Post[]>([])
+const getcurrentposts = ()=>{
+     blogPosts.value = posts.value || [];
+   console.log(posts);
+   console.log(blogPosts.value);
+}
 
+
+const layout = 'default'
 
 const userInput = ref({
   name:'My',
@@ -40,7 +28,7 @@ onMounted(()=>{
     }    
        }
       //  console.log(userInput.value.name);
-       
+       getcurrentposts()
 })
 </script>
 
@@ -68,9 +56,8 @@ onMounted(()=>{
               <UCard v-for="post in blogPosts" :key="post.id"
                 class="overflow-hidden hover:shadow-lg transition-all duration-300 hover:-translate-y-1 bg-white dark:bg-gray-700">
                 <div class="flex flex-col items-center text-center p-6">
-                  <UIcon :name="post.icon" class="w-12 h-12 text-primary-500 mb-4" />
                   <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-2">{{ post.title }}</h3>
-                  <p class="text-gray-600 dark:text-gray-300">{{ post.description }}</p>
+                  <p class="text-gray-600 dark:text-gray-300">{{ post.post_content }}</p>
                 </div>
               </UCard>
             </div>
